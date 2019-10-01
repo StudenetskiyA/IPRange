@@ -44,6 +44,15 @@ fun String.getIPAddressOrNull() : AddressIP? {
     return if (!this.isCorrectIP())
         null
     else {
-        AddressIP(mutableListOf())
+        val points = MutableList<Int>(5) {0}
+        points[0] = -1 //Первая точка - до начала строки
+        points[4] = this.length //Последняя точка - это конец строки
+        val numbers = MutableList<Int>(4) {-1}
+
+        for (i in 1..4) {
+            if (i!=4) points[i] = this.indexOf(".", points[i - 1] + 1) //Для последней "точки" мы уже задали значение
+            numbers[i-1] = this.substring(points[i-1]+1,points[i]).toInt()
+        }
+        AddressIP(numbers)
     }
 }

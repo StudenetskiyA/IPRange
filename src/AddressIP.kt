@@ -7,6 +7,6 @@ class AddressIP(var address:MutableList<Int>) : Comparable<AddressIP> {
     }
 
     override fun toString(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return this.address.toString()
     }
 }

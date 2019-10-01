@@ -6,9 +6,9 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 fun main() {
-    val myInputMethod = MyInputMethod()
+    log( "App started.")
 
-    log( "App started")
+    val myInputMethod = MyInputMethod()
 
     val ip1 = myInputMethod.getIPAddress()
     val ip2 = myInputMethod.getIPAddress()

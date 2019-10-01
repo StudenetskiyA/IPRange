@@ -1,14 +1,17 @@
+import java.util.*
 
 class MyInputMethod {
-
-
     private fun  getString() : String {
-        return ""
+        val scan = Scanner(System.`in`)
+        val txt = scan.nextLine()
+        log("User enter $txt")
+        return txt
     }
 
     fun getIPAddress() : AddressIP {
         var ip : AddressIP?
         while (true) {
+            println("Enter correct ip-address")
             ip = this.getString().getIPAddressOrNull()
             if (ip!=null) return ip
             println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")

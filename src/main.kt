@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter
 fun main() {
     log( "App started.")
 
-
     val myInputMethod = MyInputMethod()
 
     val ip1 = myInputMethod.getIPAddress()
     val ip2 = myInputMethod.getIPAddress()
+
     printRangeBetweenIP(ip1,ip2)
 }
 
@@ -27,27 +27,24 @@ fun printRangeBetweenIP (_ip1:AddressIP, _ip2:AddressIP) {
         ip2 = ip1
         ip1 = tmp
     }
-    //100.200.20.12
-    //110.201.20.56
 
     for (i0 in ip1.address[0]..ip2.address[0]) {
         for (i1 in ip1.address[1]..ip2.address[1]) {
             for (i2 in ip1.address[2]..ip2.address[2]) {
-                for (i3 in ip1.address[3]..ip2.address[3]) {
+                for (i3 in ip1.address[3]+1..ip2.address[3]-1) { //+ и - 1 нужны, чтобы не отдавать сами адреса.
                     println(AddressIP(mutableListOf(i0, i1, i2, i3)).toString())
                 }
-                ip2.address[3] = 0
+                ip1.address[3] = 0
             }
-            ip2.address[2] = 0
+            ip1.address[2] = 0
         }
-        ip2.address[1] = 0
+        ip1.address[1] = 0
     }
 }
 
-
 fun log(text:String) {
     val printWriter = PrintWriter(FileWriter("application.log", true))
-    printWriter.println(LocalDateTime.now().format( DateTimeFormatter. ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + ": " + text)
+    printWriter.println(LocalDateTime.now().format( DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + ": " + text)
     printWriter.close()
 }
 

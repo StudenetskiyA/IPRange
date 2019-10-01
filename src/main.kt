@@ -15,14 +15,25 @@ fun printRangeBetweenIP (_ip1:AddressIP, _ip2:AddressIP) {
     //Меняем местами, если первый больше второго
     if (ip1 > ip2) {
         val tmp = ip2
-        ip2=ip1
-        ip1=tmp
+        ip2 = ip1
+        ip1 = tmp
     }
-    for (i0 in ip1.address[0]..ip2.address[0])
-        for (i1 in ip1.address[1]..ip2.address[1])
-            for (i2 in ip1.address[2]..ip2.address[2])
-                for (i3 in ip1.address[3]..ip2.address[3])
-                    println (AddressIP(listOf(i0,i1,i2,i3)).toString())
+    //100.200.20.12
+    //110.201.20.56
+
+    for (i0 in ip1.address[0]..ip2.address[0]) {
+        for (i1 in ip1.address[1]..ip2.address[1]) {
+            for (i2 in ip1.address[2]..ip2.address[2]) {
+                for (i3 in ip1.address[3]..ip2.address[3]) {
+                    println(AddressIP(mutableListOf(i0, i1, i2, i3)).toString())
+                }
+                ip2.address[3] = 0
+            }
+            ip2.address[2] = 0
+        }
+        ip2.address[1] = 0
+    }
 }
+
 
 

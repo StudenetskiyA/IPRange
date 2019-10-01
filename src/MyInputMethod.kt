@@ -2,44 +2,34 @@ import java.io.InputStream
 import java.io.PrintStream
 import java.util.*
 
-class StringAsker(input: InputStream, private val output: PrintStream) {
-    private val scanner: Scanner = Scanner(input)
-
-    fun ask(message: String): String {
-        output.println(message)
-        return scanner.next()
-    }
-}
+//
+//open class StringAsker(input: InputStream, private val out: PrintStream) {
+//     var scanner: Scanner = Scanner(input)
+//     var output: PrintStream = PrintStream(out)
+//
+//    fun ask(message: String): String {
+//        output.println(message)
+//        return scanner.next()
+//    }
+//}
 
 class MyInputMethod {
+    fun  getString() : String {
+        val scan = Scanner(System.`in`)
+        val txt = scan.nextLine()
+        log("User enter $txt")
+        return txt
+    }
 
-    fun getIPAddress(asker: StringAsker) : AddressIP {
+    fun getIPAddress() : AddressIP {
         var ip : AddressIP?
         while (true) {
-            ip = asker.ask("Enter correct ip-address").getIPAddressOrNull()
-           // ip = this.getString().getIPAddressOrNull()
+            print("Enter correct ip-address : ")
+            ip = this.getString().getIPAddressOrNull()
             if (ip!=null) return ip
             println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")
         }
     }
-
-    private fun  getString() : String {
-        val scan = Scanner(System.`in`)
-        val txt = scan.nextLine()
-        log("User enter $txt")
-
-        return txt
-    }
-
-//    fun getIPAddress() : AddressIP {
-//        var ip : AddressIP?
-//        while (true) {
-//            println("Enter correct ip-address")
-//            ip = this.getString().getIPAddressOrNull()
-//            if (ip!=null) return ip
-//            println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")
-//        }
-//    }
 }
 
 fun String.isCorrectIP() : Boolean {

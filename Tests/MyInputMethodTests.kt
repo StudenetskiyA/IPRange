@@ -1,10 +1,18 @@
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 import kotlin.test.*
 import java.io.PrintStream
 import java.io.InputStream
 import java.util.*
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+
+
+
+
 
 
 class MyInputMethodTests {
@@ -34,21 +42,29 @@ class MyInputMethodTests {
             assertNull(n)
     }
 
-
-    //Вдруг ввод как-то изменится, и мы его тоже протестируем.
-    //Пока не очень понятно, как тестировать ввод с клавиатуры.
-    fun mockUserInput(userInput:String):String {
-        return userInput
+    @Test
+    fun getStringInputTest() {
+        val inputOutput = MyInputMethod()
+        val userInput = "20.10.20.255"
+        val input = ByteArrayInputStream(userInput.toByteArray())
+        System.setIn(input)
+        val outContent = ByteArrayOutputStream()
+        System.setOut(PrintStream(outContent))
+        val result = inputOutput.getString()
+        assertEquals("20.10.20.255", result)
+        //assertEquals("Enter correct ip-address : ", outContent.toString())
     }
 
-
-
-
     @Test
-    fun getStringTest() {
-        val asker = mock(StringAsker::class.java)
-
-        Mockito.`when`(asker.ask("Give a number between 1 and 10")).thenReturn("10")
-       // assertEquals(getBoundStringFromUser(asker),"10")
+    fun getIPAddressPositiveTest() {
+        val inputOutput = MyInputMethod()
+        val userInput = "20.10.20.250"
+        val input = ByteArrayInputStream(userInput.toByteArray())
+        System.setIn(input)
+        val outContent = ByteArrayOutputStream()
+        System.setOut(PrintStream(outContent))
+        val result = inputOutput.getIPAddress()
+        assertEquals("Enter correct ip-address : ", outContent.toString())
+        assertTrue(result.isEqual((AddressIP(mutableListOf(20,10,20,250)))))
     }
 }

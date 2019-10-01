@@ -11,8 +11,8 @@ fun main() {
     log("App started.")
     val myInputMethod = MyInputMethod()
 
-    val ip1 = myInputMethod.getIPAddress(StringAsker(System.`in`, System.out))
-    val ip2 = myInputMethod.getIPAddress(StringAsker(System.`in`, System.out))
+    val ip1 = myInputMethod.getIPAddress()
+    val ip2 = myInputMethod.getIPAddress()
 
     if (ip1.getNextIPorNull() != null)
         printRangeBetweenIP(ip1.getNextIPorNull()!!, ip2)

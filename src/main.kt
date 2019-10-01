@@ -8,11 +8,12 @@ import java.time.format.DateTimeFormatter
 fun main() {
     log( "App started.")
 
+
     val myInputMethod = MyInputMethod()
 
     val ip1 = myInputMethod.getIPAddress()
     val ip2 = myInputMethod.getIPAddress()
-    //printRangeBetweenIP(ip1,ip2)
+    printRangeBetweenIP(ip1,ip2)
 }
 
 

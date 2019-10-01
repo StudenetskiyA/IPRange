@@ -3,7 +3,11 @@ class AddressIP(var address:MutableList<Int>) : Comparable<AddressIP> {
 
 
     override fun compareTo(other: AddressIP): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        for (i in 0..3) {
+            if (this.address[i]>other.address[i]) return 1
+            else if (this.address[i]<other.address[i]) return -1
+        }
+        return 0
     }
 
     override fun toString(): String {

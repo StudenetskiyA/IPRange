@@ -1,7 +1,7 @@
 import org.junit.Assert
 import org.junit.Test
 
-class AddressIPtests {
+class AddressIPTests {
     @Test
     fun toStringTest() {
         var t = AddressIP(mutableListOf(0,10,99,255))

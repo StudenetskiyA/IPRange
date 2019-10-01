@@ -1,7 +1,28 @@
+import java.io.InputStream
+import java.io.PrintStream
 import java.util.*
-import kotlin.test.assertTrue
+
+class StringAsker(input: InputStream, private val output: PrintStream) {
+    private val scanner: Scanner = Scanner(input)
+
+    fun ask(message: String): String {
+        output.println(message)
+        return scanner.next()
+    }
+}
 
 class MyInputMethod {
+
+    fun getIPAddress(asker: StringAsker) : AddressIP {
+        var ip : AddressIP?
+        while (true) {
+            ip = asker.ask("Enter correct ip-address").getIPAddressOrNull()
+           // ip = this.getString().getIPAddressOrNull()
+            if (ip!=null) return ip
+            println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")
+        }
+    }
+
     private fun  getString() : String {
         val scan = Scanner(System.`in`)
         val txt = scan.nextLine()
@@ -10,19 +31,19 @@ class MyInputMethod {
         return txt
     }
 
-    fun getIPAddress() : AddressIP {
-        var ip : AddressIP?
-        while (true) {
-            println("Enter correct ip-address")
-            ip = this.getString().getIPAddressOrNull()
-            if (ip!=null) return ip
-            println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")
-        }
-    }
+//    fun getIPAddress() : AddressIP {
+//        var ip : AddressIP?
+//        while (true) {
+//            println("Enter correct ip-address")
+//            ip = this.getString().getIPAddressOrNull()
+//            if (ip!=null) return ip
+//            println("Incorrect IP, need form XXXX.XXXX.XXXX.XXXX . Try again.")
+//        }
+//    }
 }
 
 fun String.isCorrectIP() : Boolean {
-    val points = MutableList<Int>(5) {0}
+    val points = MutableList(5) {0}
     points[0] = -1 //Первая точка - до начала строки
     points[4] = this.length //Последняя точка - это конец строки
     val numbers = MutableList<Int?>(4) {-1}
@@ -44,10 +65,10 @@ fun String.getIPAddressOrNull() : AddressIP? {
     return if (!this.isCorrectIP())
         null
     else {
-        val points = MutableList<Int>(5) {0}
+        val points = MutableList(5) {0}
         points[0] = -1 //Первая точка - до начала строки
         points[4] = this.length //Последняя точка - это конец строки
-        val numbers = MutableList<Int>(4) {-1}
+        val numbers = MutableList(4) {-1}
 
         for (i in 1..4) {
             if (i!=4) points[i] = this.indexOf(".", points[i - 1] + 1) //Для последней "точки" мы уже задали значение

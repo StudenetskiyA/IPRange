@@ -18,10 +18,13 @@ class AddressIP(var address:MutableList<Int>) : Comparable<AddressIP> {
         return (this.address[0].toString()+"."+this.address[1].toString()+"."+this.address[2].toString()+"."+this.address[3].toString())
     }
 
-    fun getNextIP():AddressIP {
+    fun getNextIPorNull():AddressIP? {
         var i = mutableListOf(this.address[0], this.address[1], this.address[2], this.address[3])
         //Если это максимальный адрес - выдаем нулевой.
-        if (i[0]==MAX_VALUE_IN_IP && i[1]==MAX_VALUE_IN_IP && i[2]==MAX_VALUE_IN_IP && i[3]==MAX_VALUE_IN_IP) return AddressIP(mutableListOf(0,0,0,0))
+        //
+        // if (i[0]==MAX_VALUE_IN_IP && i[1]==MAX_VALUE_IN_IP && i[2]==MAX_VALUE_IN_IP && i[3]==MAX_VALUE_IN_IP) return AddressIP(mutableListOf(0,0,0,0))
+        if (i[0]==MAX_VALUE_IN_IP && i[1]==MAX_VALUE_IN_IP && i[2]==MAX_VALUE_IN_IP && i[3]==MAX_VALUE_IN_IP)
+            return null
 
         if (i[1] == MAX_VALUE_IN_IP && i[2] == MAX_VALUE_IN_IP && i[3] == MAX_VALUE_IN_IP) {
             i[0]++

@@ -1,12 +1,20 @@
+//Импорт только для логов в файл.
+//Для Андроид воспользовался бы удобным LogCat.
+import java.io.PrintWriter
+import java.io.FileWriter
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 fun main() {
     val myInputMethod = MyInputMethod()
 
+    log( "App started")
+
     val ip1 = myInputMethod.getIPAddress()
     val ip2 = myInputMethod.getIPAddress()
-
-   printRangeBetweenIP(ip1,ip2)
+    printRangeBetweenIP(ip1,ip2)
 }
+
 
 //Выводим список адресов между двумя IP
 fun printRangeBetweenIP (_ip1:AddressIP, _ip2:AddressIP) {
@@ -36,4 +44,9 @@ fun printRangeBetweenIP (_ip1:AddressIP, _ip2:AddressIP) {
 }
 
 
+fun log(text:String) {
+    val printWriter = PrintWriter(FileWriter("application.log", true))
+    printWriter.println(LocalDateTime.now().format( DateTimeFormatter. ofPattern("yyyy-MM-dd HH:mm:ss.SSS")) + ": " + text)
+    printWriter.close()
+}
 

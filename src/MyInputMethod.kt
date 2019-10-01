@@ -1,4 +1,7 @@
+
 class MyInputMethod {
+
+
     private fun  getString() : String {
         return ""
     }
@@ -23,6 +26,6 @@ fun String.getIPAddressOrNull() : AddressIP? {
     return if (!this.isCorrectIP())
         null
     else {
-        AddressIP(listOf())
+        AddressIP(mutableListOf())
     }
 }

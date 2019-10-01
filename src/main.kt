@@ -11,8 +11,8 @@ fun main() {
     val myInputMethod = MyInputMethod()
 
     val ip1 = myInputMethod.getIPAddress()
-    val ip2 = myInputMethod.getIPAddress()
-    printRangeBetweenIP(ip1,ip2)
+    //val ip2 = myInputMethod.getIPAddress()
+    //printRangeBetweenIP(ip1,ip2)
 }
 
 

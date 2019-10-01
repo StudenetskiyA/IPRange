@@ -21,6 +21,7 @@ class MyInputMethod {
 }
 
 fun String.isCorrectIP() : Boolean {
+    //With cycle
     val p1: Int
     val p2: Int
     val p3: Int

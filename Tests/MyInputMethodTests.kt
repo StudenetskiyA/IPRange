@@ -1,19 +1,8 @@
-import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
 import kotlin.test.*
 import java.io.PrintStream
-import java.io.InputStream
-import java.util.*
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
-
-
-
-
-
 
 class MyInputMethodTests {
     @Test
@@ -52,7 +41,6 @@ class MyInputMethodTests {
         System.setOut(PrintStream(outContent))
         val result = inputOutput.getString()
         assertEquals("20.10.20.255", result)
-        //assertEquals("Enter correct ip-address : ", outContent.toString())
     }
 
     @Test
